@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class playercontrol : MonoBehaviour {
 
-	// Use this for initialization
+    public GameObject bala; //PARA INSTANCIAR LA BALA
+
 	void Start ()
     {
 		
@@ -14,6 +15,7 @@ public class playercontrol : MonoBehaviour {
 	void Update ()
     {
       mirar_al_mouse();
+      Disparo();
 	}
 
     void mirar_al_mouse()
@@ -22,5 +24,13 @@ public class playercontrol : MonoBehaviour {
         var angulo = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.AngleAxis(angulo,Vector3.down);
     }
-    
+
+    void Disparo()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            Debug.Log("DISPARANDO BALA");
+            Instantiate(bala, gameObject.transform.position, gameObject.transform.rotation);//instancia la bala hacia donde está el mouse xd
+        }
+    }
 }
