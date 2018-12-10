@@ -15,7 +15,7 @@ public class playermove : MonoBehaviour {
         mover_al_jugador();
 
     }
-    void mover_al_jugador()
+    void mover_al_jugador()//no tiene ciencia, solo mueve al player depende de que tecla del wasd presione
     {
         if (Input.GetKey(KeyCode.W))
         {
