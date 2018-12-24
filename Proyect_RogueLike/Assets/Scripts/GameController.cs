@@ -21,15 +21,21 @@ public class GameController : MonoBehaviour {
     public cañon PlayerVida;
     public GameObject[] busqueda;
     public int Score = 0;
+    public int random_num;
+    public Vector3 cordenadas_instancia = new Vector3(24,24,0);
+    public Vector3 cordenadas_instancia1 = new Vector3(24, -24, 0);
+    public Vector3 cordenadas_instancia2 = new Vector3(-24, 24,0);
+    public Vector3 cordenadas_instancia3 = new Vector3(-24, -24, 0);
+    public Vector3 e;
 
-	void Start ()
+    void Start ()
     {
+ 
         Score = 0;
         StartCoroutine(Ronda1());//INICIA CON LA PRIMER RONDA
         StartCoroutine(EnableR1txt());//MUSTRA TEXTO RONDA 1
 
-        
-        //
+
     }
 	
 	void Update ()
@@ -46,7 +52,7 @@ public class GameController : MonoBehaviour {
             StartCoroutine(ButtonEffectOn());
 
             StartCoroutine(LoadMenu());
-            GameObject jugador = GameObject.Find("Luz");
+            GameObject jugador = GameObject.Find("player");
             jugador.SetActive(false);
         }
 
@@ -112,7 +118,8 @@ public class GameController : MonoBehaviour {
     {
         for (int i = 0; i < NumEnemies1; i++)
         {
-            Instantiate(Enemy);
+
+            elegir_cordenada();
             yield return new WaitForSeconds(1f);
         }
     }
@@ -122,8 +129,10 @@ public class GameController : MonoBehaviour {
         ronda2 = false;
         for (int i = 0; i < NumEnemies2; i++)
         {
-            Instantiate(RunLightEnemy);
-            Instantiate(Enemy);            
+            //Instantiate(RunLightEnemy);
+            //Instantiate(Enemy);        
+            elegir_cordenada();
+            elegir_cordenada2();
             yield return new WaitForSeconds(1f);
         }
     }
@@ -133,9 +142,12 @@ public class GameController : MonoBehaviour {
         ronda3 = false;
         for (int i = 0; i < NumEnemies3; i++)
         {
-            Instantiate(RunLightEnemy);
-            Instantiate(Enemy);
-            Instantiate(StopLightEnemy);
+            //Instantiate(RunLightEnemy);
+            //Instantiate(Enemy);
+            //Instantiate(StopLightEnemy);
+            elegir_cordenada();
+            elegir_cordenada2();
+            elegir_cordenada3();
             yield return new WaitForSeconds(1f);
         }
     }
@@ -262,6 +274,72 @@ public class GameController : MonoBehaviour {
         Text rFtxt1 = RFtxt1.GetComponent<Text>();
         rFtxt1.enabled = false;
         yield return new WaitForSeconds(3f);
+    }
+    void elegir_cordenada()
+    {
+        random_num = Random.Range(0,5); 
+
+        if (random_num == 1)
+        {
+            e = cordenadas_instancia;
+        }
+        if (random_num == 2)
+        {
+            e = cordenadas_instancia1;
+        }
+        if (random_num == 3)
+        {
+            e = cordenadas_instancia2;
+        }
+        if (random_num == 4)
+        {
+            e = cordenadas_instancia3;
+        }
+        Instantiate(Enemy, e,transform.rotation);
+    }
+    void elegir_cordenada2()
+    {
+        random_num = Random.Range(0, 5);
+
+        if (random_num == 1)
+        {
+            e = cordenadas_instancia;
+        }
+        if (random_num == 2)
+        {
+            e = cordenadas_instancia1;
+        }
+        if (random_num == 3)
+        {
+            e = cordenadas_instancia2;
+        }
+        if (random_num == 4)
+        {
+            e = cordenadas_instancia3;
+        }
+        Instantiate(RunLightEnemy, e, transform.rotation);
+    }
+    void elegir_cordenada3()
+    {
+        random_num = Random.Range(0, 5);
+
+        if (random_num == 1)
+        {
+            e = cordenadas_instancia;
+        }
+        if (random_num == 2)
+        {
+            e = cordenadas_instancia1;
+        }
+        if (random_num == 3)
+        {
+            e = cordenadas_instancia2;
+        }
+        if (random_num == 4)
+        {
+            e = cordenadas_instancia3;
+        }
+        Instantiate(StopLightEnemy, e, transform.rotation);
     }
 
 }

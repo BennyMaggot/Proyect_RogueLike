@@ -20,11 +20,15 @@ namespace Pathfinding
         //AIDestinationSetter Target;
         //GameObject refPlayer;
         //Transform compPlayer;
-
+        public bool entro_a_vision;
+        
         void Start()
         {
             Target = GetComponent<AIDestinationSetter>();
             refPlayer = GameObject.FindGameObjectWithTag("Player");
+           
+            scrip_lerp.canMove = true;
+            scrip_lerp.speed = 8;
         }
 
         // Update is called once per frame
@@ -32,24 +36,33 @@ namespace Pathfinding
         {
             compPlayer = refPlayer.GetComponent<Transform>();
             Target.target = compPlayer;
+            
         }
         void OnTriggerEnter(Collider col)//SI CHOCA CON LA BALA SE DESTRUYE EL ENEMIGO
         {
             if (col.tag.Equals("Bala"))
             {
+                mitransform = gameObject.transform.position;
+                Instantiate(pariculas1, mitransform, Quaternion.identity);
                 Destroy(gameObject);
             }
             if (col.tag.Equals("luz"))
             {
                 scrip_lerp.canMove = true;
                 scrip_lerp.speed = 8;
+                entro_a_vision = true;
+            }
+            if (col.tag.Equals("radio_seguimiento"))
+            {
+                scrip_lerp.canMove = false;
+                scrip_lerp.speed = 8;
             }
         }
         private void OnTriggerExit(Collider col)
         {
-            if (col.tag.Equals("luz"))
+            if (col.tag.Equals("radio_seguimiento"))
             {
-                scrip_lerp.canMove = false;
+                scrip_lerp.canMove = true;
             }
         }
     }

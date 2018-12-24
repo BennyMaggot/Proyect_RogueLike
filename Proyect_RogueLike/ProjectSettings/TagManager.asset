@@ -10,6 +10,7 @@ TagManager:
   - l
   - escudito
   - "ca\xF1on"
+  - radio_seguimiento
   layers:
   - Default
   - TransparentFX

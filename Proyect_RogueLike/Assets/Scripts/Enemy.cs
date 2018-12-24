@@ -18,6 +18,7 @@ namespace Pathfinding
         //Transform compPlayer;
 
         // Use this for initialization
+        //public Vector3 mitransform;
         void Start()
         {
             Target = GetComponent<AIDestinationSetter>();
@@ -28,13 +29,16 @@ namespace Pathfinding
         void Update()
         {
             compPlayer = refPlayer.GetComponent<Transform>();
-            Target.target = compPlayer;  
+            Target.target = compPlayer;
+            
         }
 
         void OnTriggerEnter(Collider col)//SI CHOCA CON LA BALA SE DESTRUYE EL ENEMIGO
         {
             if (col.tag.Equals("Bala"))
             {
+                mitransform = gameObject.transform.position;
+                Instantiate(pariculas1,mitransform,Quaternion.identity);
                 Destroy(gameObject);
             }
         }

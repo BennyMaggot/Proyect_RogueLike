@@ -18,10 +18,12 @@ namespace Pathfinding
         public Transform compPlayer;
         public cañon vida_player;
         public GameObject refplayer2;
+        public GameObject pariculas1;
+        public Vector3 mitransform;
 
         void Start()
         {
-
+            refPlayer = GameObject.FindGameObjectWithTag("Player");
         }
 
         void Update()

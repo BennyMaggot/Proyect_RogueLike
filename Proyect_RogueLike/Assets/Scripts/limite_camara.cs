@@ -35,15 +35,15 @@ public class limite_camara : MonoBehaviour {
     void limite()
     {
         float posx = Mathf.SmoothDamp(transform.position.x,player.transform.position.x,ref velocity.x,smothtimex);
-        float posy = Mathf.SmoothDamp(transform.position.y+13, player.transform.position.y+13, ref velocity.y, smothtimey);//aqui se dan las posiciones iniciales de la camara
-        float posz = Mathf.SmoothDamp(transform.position.z, player.transform.position.z, ref velocity.x, smothtimey);
+        float posy = Mathf.SmoothDamp(transform.position.y, player.transform.position.y, ref velocity.y, smothtimey);//aqui se dan las posiciones iniciales de la camara
+        float posz = Mathf.SmoothDamp(transform.position.z-13, player.transform.position.z-13, ref velocity.x, smothtimey);
         transform.position = new Vector3(posx,posy,posz);
 
         if(bounds)
         {
             transform.position = new Vector3(Mathf.Clamp(transform.position.x, mincamarapos.x, maxcamarapos.x),
-                                            Mathf.Clamp(transform.position.y+5, mincamarapos.y+5, maxcamarapos.y+5),//aqui se dan las posiciones iniciales de la camara si se activa el "bounds"
-                                            Mathf.Clamp(transform.position.z, mincamarapos.z, maxcamarapos.z));
+                                            Mathf.Clamp(transform.position.y, mincamarapos.y, maxcamarapos.y),//aqui se dan las posiciones iniciales de la camara si se activa el "bounds"
+                                            Mathf.Clamp(transform.position.z-5, mincamarapos.z-5, maxcamarapos.z-5));
         }
     }
 }

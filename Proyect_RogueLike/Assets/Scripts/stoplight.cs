@@ -33,8 +33,9 @@ namespace Pathfinding
         {
             compPlayer = refPlayer.GetComponent<Transform>();
             Target.target = compPlayer;
-
-             vida_player = refplayer2.GetComponent<cañon>();
+            //mitransform = gameObject.transform.position;
+            vida_player = refplayer2.GetComponent<cañon>();
+            
             //refPlayer = GetComponent<GameObject>();
             if (vida_player.vida < 0.4f)
             {
@@ -45,6 +46,8 @@ namespace Pathfinding
         {
             if (col.tag.Equals("Bala"))
             {
+                mitransform = gameObject.transform.position;
+                Instantiate(pariculas1,mitransform,Quaternion.identity);
                 Destroy(gameObject);
             }
             if (col.tag.Equals("luz"))

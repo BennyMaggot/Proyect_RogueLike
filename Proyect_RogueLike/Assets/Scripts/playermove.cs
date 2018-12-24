@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class playermove : MonoBehaviour {
 
+    public int speed;
 	// Use this for initialization
 	void Start () {
 		
@@ -13,34 +14,25 @@ public class playermove : MonoBehaviour {
 	void Update ()
     {
         mover_al_jugador();
-
     }
     void mover_al_jugador()//no tiene ciencia, solo mueve al player depende de que tecla del wasd presione
     {
         if (Input.GetKey(KeyCode.W))
         {
-            transform.Translate(0, 0, 0.2f);
+            transform.Translate(Vector3.up * speed * Time.deltaTime, Space.World);
         }
-        else
+        if (Input.GetKey(KeyCode.S))
         {
-            if (Input.GetKey(KeyCode.S))
-            {
-                transform.Translate(0, 0, -0.2f);
-            }
-            else
-            {
-                if (Input.GetKey(KeyCode.A))
-                {
-                    transform.Translate(-0.2f, 0, 0);
-                }
-                else
-                {
-                    if (Input.GetKey(KeyCode.D))
-                    {
-                        transform.Translate(0.2f, 0, 0);
-                    }
-                }
-            }
+            transform.Translate(Vector3.down * speed * Time.deltaTime, Space.World);
         }
+        if (Input.GetKey(KeyCode.D))
+        {
+            transform.Translate(Vector3.right * speed * Time.deltaTime, Space.World);
+        }
+        if (Input.GetKey(KeyCode.A))
+        {
+            transform.Translate(Vector3.left * speed * Time.deltaTime, Space.World);
+        }
+
     }
 }
