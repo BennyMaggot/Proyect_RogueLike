@@ -44,16 +44,25 @@ namespace Pathfinding
         }
         void OnTriggerEnter(Collider col)//SI CHOCA CON LA BALA SE DESTRUYE EL ENEMIGO
         {
-            if (col.tag.Equals("Bala"))
+            if (col.tag.Equals("Bala") )
             {
                 mitransform = gameObject.transform.position;
-                Instantiate(pariculas1,mitransform,Quaternion.identity);
+                Instantiate(pariculas1, mitransform, Quaternion.identity);
                 Destroy(gameObject);
             }
             if (col.tag.Equals("luz"))
             {
                 scrip_lerp.canMove = false;
             }
+            if (col.tag.Equals("invencible"))
+            {
+                GameObject.Find("GameController").GetComponent<GameController>().Score++;
+                Debug.Log("SCORE ACTUAL: " + GameObject.Find("GameController").GetComponent<GameController>().Score);
+                mitransform = gameObject.transform.position;
+                Instantiate(pariculas1, mitransform, Quaternion.identity);
+                Destroy(gameObject);
+            }
+
         }
         private void OnTriggerExit(Collider col)
         {

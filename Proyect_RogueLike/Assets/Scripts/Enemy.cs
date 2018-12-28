@@ -41,6 +41,14 @@ namespace Pathfinding
                 Instantiate(pariculas1,mitransform,Quaternion.identity);
                 Destroy(gameObject);
             }
+            if (col.tag.Equals("invencible"))
+            {
+                GameObject.Find("GameController").GetComponent<GameController>().Score++;
+                Debug.Log("SCORE ACTUAL: " + GameObject.Find("GameController").GetComponent<GameController>().Score);
+                mitransform = gameObject.transform.position;
+                Instantiate(pariculas1, mitransform, Quaternion.identity);
+                Destroy(gameObject);
+            }
         }
     }
 }

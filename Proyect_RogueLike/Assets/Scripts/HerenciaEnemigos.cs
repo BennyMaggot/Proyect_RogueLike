@@ -20,6 +20,7 @@ namespace Pathfinding
         public GameObject refplayer2;
         public GameObject pariculas1;
         public Vector3 mitransform;
+  
 
         void Start()
         {

@@ -11,6 +11,8 @@ TagManager:
   - escudito
   - "ca\xF1on"
   - radio_seguimiento
+  - invencible
+  - power_up
   layers:
   - Default
   - TransparentFX

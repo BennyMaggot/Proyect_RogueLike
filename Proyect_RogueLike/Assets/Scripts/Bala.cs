@@ -26,9 +26,8 @@ public class Bala : MonoBehaviour {
             Destroy(gameObject);
             GameObject.Find("GameController").GetComponent<GameController>().Score++;
             Debug.Log("SCORE ACTUAL: " + GameObject.Find("GameController").GetComponent<GameController>().Score);
-            
         }
-        
+
     }
     private void OnCollisionEnter(Collision collision)
     {

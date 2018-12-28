@@ -57,6 +57,14 @@ namespace Pathfinding
                 scrip_lerp.canMove = false;
                 scrip_lerp.speed = 8;
             }
+            if (col.tag.Equals("invencible"))
+            {
+                GameObject.Find("GameController").GetComponent<GameController>().Score++;
+                Debug.Log("SCORE ACTUAL: " + GameObject.Find("GameController").GetComponent<GameController>().Score);
+                mitransform = gameObject.transform.position;
+                Instantiate(pariculas1, mitransform, Quaternion.identity);
+                Destroy(gameObject);
+            }
         }
         private void OnTriggerExit(Collider col)
         {

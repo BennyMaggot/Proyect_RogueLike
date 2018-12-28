@@ -9,7 +9,7 @@ public class cañon : MonoBehaviour {
     public float vida = 1f;
     public Slider slider_vida;
     public GameObject player;
-
+    public GameObject invencible;
     //cree este script para ponerselo a un cañoncito en frente de el player y que ese sea el que dispare
 
     public GameObject bala; //PARA INSTANCIAR LA BALA
@@ -43,6 +43,8 @@ public class cañon : MonoBehaviour {
         {
             Debug.Log("DISPARANDO BALA");
             Instantiate(bala, gameObject.transform.position, gameObject.transform.rotation);//instancia la bala hacia donde está el mouse xd
+            AudioSource sonidobala = gameObject.GetComponent<AudioSource>();
+            sonidobala.Play();
         }
     }
     public void OnTriggerEnter(Collider other)
@@ -55,7 +57,10 @@ public class cañon : MonoBehaviour {
         {
             vida = 0;
             Destroy(gameObject);
-            
+        }
+        if (other.tag.Equals("power_up"))
+        {
+            invencible.SetActive(true);
         }
     }
 
