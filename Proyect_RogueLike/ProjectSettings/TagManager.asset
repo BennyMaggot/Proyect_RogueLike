@@ -7,6 +7,12 @@ TagManager:
   - Bala
   - Enemy
   - luz
+  - l
+  - escudito
+  - "ca\xF1on"
+  - radio_seguimiento
+  - invencible
+  - power_up
   layers:
   - Default
   - TransparentFX
@@ -19,7 +25,7 @@ TagManager:
   - PostProcessing
   - Player
   - Obstacule
-  - 
+  - Enemy
   - 
   - 
   - 
