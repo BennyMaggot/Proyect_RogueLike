@@ -5,10 +5,12 @@ using UnityEngine;
 public class playermove : MonoBehaviour {
 
     public int speed;
+    
 	// Use this for initialization
-	void Start () {
-		
-	}
+	void Start ()
+    {
+        //DontDestroyOnLoad(this.gameObject);
+    }
 	
 	// Update is called once per frame
 	void Update ()

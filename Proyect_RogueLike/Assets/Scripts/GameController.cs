@@ -22,46 +22,86 @@ public class GameController : MonoBehaviour {
     public GameObject[] busqueda;
     public int Score = 0;
     public int random_num;
-    public Vector3 cordenadas_instancia = new Vector3(24,24,0);
+    public Vector3 cordenadas_instancia = new Vector3(24, 24, 0);
     public Vector3 cordenadas_instancia1 = new Vector3(24, -24, 0);
-    public Vector3 cordenadas_instancia2 = new Vector3(-24, 24,0);
+    public Vector3 cordenadas_instancia2 = new Vector3(-24, 24, 0);
     public Vector3 cordenadas_instancia3 = new Vector3(-24, -24, 0);
     public Vector3 e;
+    public bool señal, señal2;
+    public AudioSource audiomuerte;
+
 
     void Start ()
     {
- 
-        Score = 0;
-        StartCoroutine(Ronda1());//INICIA CON LA PRIMER RONDA
+       // Score = 0;
+       if(Score < 1)
+        {
+            Debug.Log("entro esta mierda");
+            StartCoroutine(Ronda1());
+        }
+       //INICIA CON LA PRIMER RONDA
         StartCoroutine(EnableR1txt());//MUSTRA TEXTO RONDA 1
-
-
+       // DontDestroyOnLoad(this.gameObject);
     }
-	
-	void Update ()
+
+    //public void metodo_eleccion()
+    //{
+    //    if()
+    //    {
+
+    //    }
+
+    //}
+    void Update()
     {
         GameObject text = GameObject.Find("ScoreText");
         Text txt = text.GetComponent<Text>();
-        txt.text = "Score :" + Score;
+        txt.text = "Puntos :" + Score;
 
         if (PlayerVida.vida <= 0)
         {
+           
+            Debug.Log("semurio");
             /*GameObject text = GameObject.Find("GameOver");
             Text txt = text.GetComponent<Text>();
             txt.enabled = true;*/
             StartCoroutine(ButtonEffectOn());
-
+           
             StartCoroutine(LoadMenu());
+            
             GameObject jugador = GameObject.Find("player");
             if (jugador != null)
             {
+                audiomuerte.Play();
                 jugador.SetActive(false);
             }
         }
 
+
+        if (Score == 10 && ronda2 == true && señal == true)
+        {
+
+            SceneManager.LoadScene("Nivel 2");
+            señal = false;
+        }
+
+        if (Score == 30 && ronda3 == true && señal2 == true)
+        {
+            SceneManager.LoadScene("Nivel 3");
+           // Debug.Log("putooooooooooooooooooooooooooo");
+            señal2 = false;
+
+
+        }
+        
+       
+       
+
+        
         //COMPARACIÓN PARA EJECUTAR LA SEGUNDA RONDA
         if (Score == 10 && ronda2 == true)
-        { 
+        {
+
             StartCoroutine(Ronda2());
             StartCoroutine(EnableR2txt());
             StopCoroutine(Ronda1());
@@ -70,6 +110,7 @@ public class GameController : MonoBehaviour {
         //COMPARACIÓN PARA EJECUTAR LA TERCER RONDA
         if (Score >= 30 && ronda3 == true)
         {
+            //SceneManager.LoadScene("Nivel 3");
             StartCoroutine(Ronda3());
             StartCoroutine(EnableR3txt());
             StopCoroutine(Ronda2());
@@ -83,7 +124,7 @@ public class GameController : MonoBehaviour {
             busqueda = GameObject.FindGameObjectsWithTag("Enemy");
         }
 
-        if (Score >= 160)
+        if (Score >= 140)
         {
             GameObject text2 = GameObject.Find("EpicWin");
             Text txt2 = text2.GetComponent<Text>();
@@ -114,14 +155,13 @@ public class GameController : MonoBehaviour {
     IEnumerator LoadMenu()
     {
         yield return new WaitForSeconds(3f);
-        SceneManager.LoadScene("Menu");
+        SceneManager.LoadScene("Menu Alexo");
     }
 
     IEnumerator Ronda1()
     {
         for (int i = 0; i < NumEnemies1; i++)
         {
-
             elegir_cordenada();
             yield return new WaitForSeconds(1f);
         }
@@ -133,9 +173,17 @@ public class GameController : MonoBehaviour {
         for (int i = 0; i < NumEnemies2; i++)
         {
             //Instantiate(RunLightEnemy);
-            //Instantiate(Enemy);        
-            elegir_cordenada();
-            elegir_cordenada2();
+            //Instantiate(Enemy); 
+            int  random_num2 = Random.Range(1, 3);
+            Debug.Log(random_num2);
+            if(random_num2 ==1)
+            {
+                elegir_cordenada();
+            }
+            if (random_num2 == 2)
+            {
+                elegir_cordenada2();
+            }
             yield return new WaitForSeconds(1f);
         }
     }
@@ -278,7 +326,8 @@ public class GameController : MonoBehaviour {
         rFtxt1.enabled = false;
         yield return new WaitForSeconds(3f);
     }
-    void elegir_cordenada()
+
+        void elegir_cordenada()
     {
         random_num = Random.Range(0,5); 
 

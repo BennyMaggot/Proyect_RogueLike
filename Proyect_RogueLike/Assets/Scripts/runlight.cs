@@ -74,6 +74,11 @@ namespace Pathfinding
             {
                 scrip_lerp.canMove = true;
             }
+            if (col.tag.Equals("luz"))
+            {
+                scrip_lerp.canMove = false;
+            }
+
         }
     }
 }

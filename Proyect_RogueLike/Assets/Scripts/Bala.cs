@@ -11,6 +11,7 @@ public class Bala : MonoBehaviour {
                          
     void Start () {
         //GameController = GetComponent<GameController>();
+        StartCoroutine("destrucsion");
 	}
 	
 	// Update is called once per frame
@@ -44,6 +45,14 @@ public class Bala : MonoBehaviour {
             Destruyendo = StartCoroutine("Destruir");
         }
     }
+    IEnumerator destrucsion()//TIEMPO PARA QUE SE DESTRUYA LA BALA SI NO COLISIONA CON NADA
+    {
+
+        //Destruyendo = StartCoroutine("Destruir");
+        yield return new WaitForSeconds(1.5f);
+        Destroy(gameObject);
+    }
+
 
     IEnumerator Destruir()
     {

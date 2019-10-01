@@ -18,7 +18,7 @@ namespace Pathfinding
         //GameObject refPlayer;
         //Transform compPlayer;
         public float life_boss = 1;
-        public GameObject enemy1, enemy2, enemy3;
+       // public GameObject enemy1, enemy2, enemy3;
         public Slider slider_boss;
         public GameObject escudito;
         void Start()
@@ -51,8 +51,8 @@ namespace Pathfinding
         {
             if (col.tag.Equals("Bala"))
             {
-                life_boss = life_boss - 0.1f;
-                SpawnSelector();
+                life_boss = life_boss - 0.05f;
+                //sSpawnSelector();
                 if (life_boss <=0)
                 {
                     slider_boss.value = life_boss;
@@ -63,7 +63,7 @@ namespace Pathfinding
         }
 
 
-        void SpawnSelector()
+        /*void SpawnSelector()
         {
             int rand = Random.Range(0, 3);
 
@@ -80,6 +80,6 @@ namespace Pathfinding
                     break;
 
             }
-        }
+        }*/
     }
 }

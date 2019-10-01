@@ -15,6 +15,6 @@ public class BotonJugar : MonoBehaviour
     {
         Anim.Play("JugarAnim");
         yield return new WaitForSeconds(0.2f);
-        SceneManager.LoadScene("Game");
+        SceneManager.LoadScene("Nivel 1");
     }
 }
