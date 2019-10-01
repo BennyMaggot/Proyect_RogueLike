@@ -14,6 +14,8 @@ namespace Pathfinding
 
     public class boss : HerenciaEnemigos
     {
+        public Transform see;
+        public Transform seeDead;
         //AIDestinationSetter Target;
         //GameObject refPlayer;
         //Transform compPlayer;
@@ -23,8 +25,8 @@ namespace Pathfinding
         public GameObject escudito;
         void Start()
         {
-            Target = GetComponent<AIDestinationSetter>();
-            refPlayer = GameObject.FindGameObjectWithTag("Player");
+                Target = GetComponent<AIDestinationSetter>();
+                refPlayer = GameObject.FindGameObjectWithTag("Player");
             //slider_boss = GameObject.Find("Vida_Boss");
             //slider_boss.SetActive(true);
             //GameObject text = GameObject.Find("VidaBoss");
@@ -37,8 +39,23 @@ namespace Pathfinding
 
         void Update()
         {
-            compPlayer = refPlayer.GetComponent<Transform>();
-            Target.target = compPlayer;
+            if (refPlayer != null)
+            {
+                if (GameObject.Find("player/See") != null)
+                {
+                    see = GameObject.Find("player/See").GetComponent<Transform>();
+                }
+                
+                compPlayer = refPlayer.GetComponent<Transform>();
+                Target.target = compPlayer;
+                transform.rotation = Quaternion.LookRotation(see.transform.position, Vector3.up);
+            }
+            if (GameObject.Find("player/See") == null)
+            {
+                seeDead = GameObject.Find("SeeDead").GetComponent<Transform>();
+                see = seeDead;
+                transform.rotation = Quaternion.LookRotation(see.transform.position, Vector3.up);
+            }
             slider_boss.value = life_boss;
 
             if (life_boss <= 0.4f)

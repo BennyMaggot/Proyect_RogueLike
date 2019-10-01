@@ -16,6 +16,8 @@ namespace Pathfinding
     public class runlight : HerenciaEnemigos
     {
         public AILerp scrip_lerp;
+        public Transform see;
+        public Transform seeDead;
 
         //AIDestinationSetter Target;
         //GameObject refPlayer;
@@ -29,16 +31,28 @@ namespace Pathfinding
            
             scrip_lerp.canMove = true;
             scrip_lerp.speed = 8;
-
-            transform.rotation = Quaternion.LookRotation(refPlayer.transform.position, refPlayer.transform.position);
+          
         }
 
         // Update is called once per frame
         void Update()
         {
-            compPlayer = refPlayer.GetComponent<Transform>();
-            Target.target = compPlayer;
-            
+            if (refPlayer != null)
+            {
+                if (GameObject.Find("player/See") != null)
+                {
+                    see = GameObject.Find("player/See").GetComponent<Transform>();
+                }
+                compPlayer = refPlayer.GetComponent<Transform>();
+                Target.target = compPlayer;
+                transform.rotation = Quaternion.LookRotation(see.transform.position, Vector3.up);
+            }
+            if (GameObject.Find("player/See") == null)
+            {
+                seeDead = GameObject.Find("SeeDead").GetComponent<Transform>();
+                see = seeDead;
+                transform.rotation = Quaternion.LookRotation(see.transform.position, Vector3.up);
+            }
         }
         void OnTriggerEnter(Collider col)//SI CHOCA CON LA BALA SE DESTRUYE EL ENEMIGO
         {

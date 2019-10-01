@@ -9,7 +9,7 @@ public class GameController : MonoBehaviour {
     int NumEnemies1 = 10;
     int NumEnemies2 = 20;
     int NumEnemies3 = 30;
-
+    public GameObject rotationpos;
     public GameObject Enemy;
     public GameObject StopLightEnemy;
     public GameObject RunLightEnemy;
@@ -347,7 +347,7 @@ public class GameController : MonoBehaviour {
         {
             e = cordenadas_instancia3;
         }
-        Instantiate(Enemy, e,transform.rotation);
+        Instantiate(Enemy, e, rotationpos.transform.rotation);
     }
     void elegir_cordenada2()
     {
@@ -369,7 +369,7 @@ public class GameController : MonoBehaviour {
         {
             e = cordenadas_instancia3;
         }
-        Instantiate(RunLightEnemy, e, transform.rotation);
+        Instantiate(RunLightEnemy, e, rotationpos.transform.rotation);
     }
     void elegir_cordenada3()
     {
@@ -391,7 +391,7 @@ public class GameController : MonoBehaviour {
         {
             e = cordenadas_instancia3;
         }
-        Instantiate(StopLightEnemy, e, transform.rotation);
+        Instantiate(StopLightEnemy, e, rotationpos.transform.rotation);
     }
 
 }

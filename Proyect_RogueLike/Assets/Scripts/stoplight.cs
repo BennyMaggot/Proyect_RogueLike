@@ -19,6 +19,8 @@ namespace Pathfinding
         //GameObject refPlayer;
         //Transform compPlayer;
 
+        public Transform see;
+        public Transform seeDead;
         public AILerp scrip_lerp;
 
         void Start()
@@ -31,17 +33,31 @@ namespace Pathfinding
         // Update is called once per frame
         void Update()
         {
-            compPlayer = refPlayer.GetComponent<Transform>();
-            Target.target = compPlayer;
-            //mitransform = gameObject.transform.position;
-            vida_player = refplayer2.GetComponent<cañon>();
-            
-            //refPlayer = GetComponent<GameObject>();
-            if (vida_player.vida < 0.4f)
+            if (refPlayer != null)
             {
-                scrip_lerp.speed = 10;
+                if (GameObject.Find("player/See") != null)
+                {
+                    see = GameObject.Find("player/See").GetComponent<Transform>();
+                }
+                
+                compPlayer = refPlayer.GetComponent<Transform>();
+                Target.target = compPlayer;
+                //mitransform = gameObject.transform.position;
+                vida_player = refplayer2.GetComponent<cañon>();
+
+                //refPlayer = GetComponent<GameObject>();
+                if (vida_player.vida < 0.4f)
+                {
+                    scrip_lerp.speed = 10;
+                }
+                transform.rotation = Quaternion.LookRotation(see.transform.position, Vector3.up);
             }
-            transform.rotation = Quaternion.LookRotation(refPlayer.transform.position, refPlayer.transform.position);
+            if (GameObject.Find("player/See") == null)
+            {
+                seeDead = GameObject.Find("SeeDead").GetComponent<Transform>();
+                see = seeDead;
+                transform.rotation = Quaternion.LookRotation(see.transform.position, Vector3.up);
+            }
         }
         void OnTriggerEnter(Collider col)//SI CHOCA CON LA BALA SE DESTRUYE EL ENEMIGO
         {
