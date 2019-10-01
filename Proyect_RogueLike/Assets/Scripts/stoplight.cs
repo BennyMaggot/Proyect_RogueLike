@@ -41,6 +41,7 @@ namespace Pathfinding
             {
                 scrip_lerp.speed = 10;
             }
+            transform.rotation = Quaternion.LookRotation(refPlayer.transform.position, refPlayer.transform.position);
         }
         void OnTriggerEnter(Collider col)//SI CHOCA CON LA BALA SE DESTRUYE EL ENEMIGO
         {
