@@ -53,10 +53,7 @@ public class GameController : MonoBehaviour {
 
             StartCoroutine(LoadMenu());
             GameObject jugador = GameObject.Find("player");
-            if (jugador != null)
-            {
-                jugador.SetActive(false);
-            }
+            jugador.SetActive(false);
         }
 
         //COMPARACIÓN PARA EJECUTAR LA SEGUNDA RONDA
