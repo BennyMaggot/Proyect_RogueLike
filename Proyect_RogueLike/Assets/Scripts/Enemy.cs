@@ -30,7 +30,8 @@ namespace Pathfinding
         {
             compPlayer = refPlayer.GetComponent<Transform>();
             Target.target = compPlayer;
-            
+            transform.rotation = Quaternion.LookRotation(refPlayer.transform.position, refPlayer.transform.position);
+
         }
 
         void OnTriggerEnter(Collider col)//SI CHOCA CON LA BALA SE DESTRUYE EL ENEMIGO

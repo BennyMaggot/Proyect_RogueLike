@@ -29,6 +29,8 @@ namespace Pathfinding
            
             scrip_lerp.canMove = true;
             scrip_lerp.speed = 8;
+
+            transform.rotation = Quaternion.LookRotation(refPlayer.transform.position, refPlayer.transform.position);
         }
 
         // Update is called once per frame
